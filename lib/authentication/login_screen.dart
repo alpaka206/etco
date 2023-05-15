@@ -5,10 +5,12 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: SafeArea(
         child: Column(
-          children: [],
+          children: [
+            Image.asset('assets/images/Seller.png'),
+          ],
         ),
       ),
     );
