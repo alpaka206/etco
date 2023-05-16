@@ -1,3 +1,4 @@
+import 'package:etco/authentication/signup_screen.dart';
 import 'package:etco/authentication/two_step_auth_screen.dart';
 import 'package:etco/constants/gaps.dart';
 import 'package:etco/constants/sizes.dart';
@@ -58,11 +59,21 @@ class _LoginScreenState extends State<LoginScreen> {
     });
   }
 
+  void _onSignUpTap() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const SignUpScreen(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: _onScaffoldTap,
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         body: SafeArea(
           child: Padding(
             padding: const EdgeInsets.symmetric(
@@ -74,9 +85,13 @@ class _LoginScreenState extends State<LoginScreen> {
                 Gaps.v48,
                 Padding(
                   padding: const EdgeInsets.symmetric(
-                    horizontal: Sizes.size96 + Sizes.size24 + Sizes.size2,
+                    horizontal: Sizes.size96,
                   ),
-                  child: Image.asset('assets/images/Seller.png'),
+                  child: Image.asset(
+                    'assets/images/Seller.png',
+                    width: 400,
+                    fit: BoxFit.fitWidth,
+                  ),
                 ),
                 Gaps.v36,
                 TextField(
@@ -125,18 +140,61 @@ class _LoginScreenState extends State<LoginScreen> {
                   cursorColor: Theme.of(context).primaryColor,
                 ),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Checkbox(
                       value: _isChecked,
                       onChanged: (value) => _onChecked(),
                       checkColor: Colors.white,
+                      activeColor: Theme.of(context).primaryColor,
                     ),
                     const Text(
                       "아이디 저장",
-                      style: TextStyle(),
+                      style: TextStyle(
+                        fontSize: Sizes.size16,
+                        fontWeight: FontWeight.w100,
+                      ),
                     ),
                   ],
-                )
+                ),
+                Gaps.v72,
+                const Text(
+                  '*개인 정보 보호를 위해 본인 기기에서만 이용해주세요',
+                  style: TextStyle(
+                    fontSize: Sizes.size14,
+                    color: Colors.red,
+                  ),
+                ),
+                Gaps.v32,
+                GestureDetector(
+                  onTap: _onSubmit,
+                  child: Image.asset(
+                    'assets/images/login_button.png',
+                    width: double.infinity,
+                    fit: BoxFit.fitWidth,
+                  ),
+                ),
+                Gaps.v10,
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: Sizes.size10,
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(
+                        '아이디 · 비밀번호 찾기',
+                        style: TextStyle(),
+                      ),
+                      GestureDetector(
+                        onTap: _onSignUpTap,
+                        child: const Text(
+                          '회원가입',
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ],
             ),
           ),
