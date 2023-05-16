@@ -147,6 +147,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       onChanged: (value) => _onChecked(),
                       checkColor: Colors.white,
                       activeColor: Theme.of(context).primaryColor,
+                      side: const BorderSide(
+                        color: Colors.grey,
+                      ),
                     ),
                     const Text(
                       "아이디 저장",
