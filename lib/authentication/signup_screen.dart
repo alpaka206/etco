@@ -1,6 +1,7 @@
 import 'package:etco/constants/gaps.dart';
 import 'package:etco/constants/sizes.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -70,21 +71,49 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
               ),
               //나중에 수정
-              DropdownButton(
-                value: _selectSeller,
-                items: _sellerList.map(
-                  (value) {
-                    return DropdownMenuItem(
-                      value: value,
-                      child: Text(value),
-                    );
-                  },
-                ).toList(),
-                onChanged: (value) {
-                  setState(() {
-                    _selectSeller = value;
-                  });
-                },
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  DropdownButton(
+                    elevation: 10,
+                    borderRadius: BorderRadius.circular(20),
+                    icon: const FaIcon(
+                      FontAwesomeIcons.angleDown,
+                    ),
+                    iconSize: 20,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w300,
+                      color: Colors.black,
+                    ),
+                    value: _selectSeller,
+                    items: _sellerList.map(
+                      (value) {
+                        return DropdownMenuItem(
+                          value: value,
+                          child: Text(value),
+                        );
+                      },
+                    ).toList(),
+                    onChanged: (value) {
+                      setState(() {
+                        _selectSeller = value;
+                      });
+                    },
+                  ),
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: Sizes.size32,
+                      vertical: Sizes.size14,
+                    ),
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Colors.grey,
+                        width: 1,
+                      ),
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
