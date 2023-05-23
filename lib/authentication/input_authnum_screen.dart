@@ -11,8 +11,33 @@ class InputAuthnumScreen extends StatefulWidget {
 }
 
 class _InputAuthnumScreenState extends State<InputAuthnumScreen> {
+  final TextEditingController _authnumController = TextEditingController();
+  String _authnum = "";
+  @override
+  void initState() {
+    super.initState();
+    _authnumController.addListener(() {
+      _authnum = _authnumController.text;
+    });
+  }
+
+  @override
+  void dispose() {
+    _authnumController.dispose();
+    super.dispose();
+  }
+
   void _onScaffoldTap() {
     FocusScope.of(context).unfocus();
+  }
+
+  void _onNextTap() {
+    if (_authnum.isEmpty) return;
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => Container(),
+      ),
+    );
   }
 
   @override
@@ -52,11 +77,16 @@ class _InputAuthnumScreenState extends State<InputAuthnumScreen> {
                   width: 190,
                   height: 35,
                   child: TextField(
+                    controller: _authnumController,
+                    cursorColor: Theme.of(context).primaryColor,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(
                           Sizes.size7,
                         ),
+                      ),
+                      focusedBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey),
                       ),
                       filled: true,
                       fillColor: Colors.white,
@@ -75,7 +105,7 @@ class _InputAuthnumScreenState extends State<InputAuthnumScreen> {
                 ),
                 Gaps.v72,
                 GestureDetector(
-                  onTap: () {},
+                  onTap: _onNextTap,
                   child: const AuthButton(
                     text: "Time",
                   ),
