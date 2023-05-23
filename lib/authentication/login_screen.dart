@@ -1,5 +1,6 @@
 import 'package:etco/authentication/signup_screen.dart';
 import 'package:etco/authentication/two_step_auth_screen.dart';
+import 'package:etco/authentication/widgets/auth_button.dart';
 import 'package:etco/constants/gaps.dart';
 import 'package:etco/constants/sizes.dart';
 import 'package:flutter/material.dart';
@@ -170,13 +171,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 Gaps.v32,
                 GestureDetector(
-                  onTap: _onSubmit,
-                  child: Image.asset(
-                    'assets/images/login_button.png',
-                    width: double.infinity,
-                    fit: BoxFit.fitWidth,
-                  ),
-                ),
+                    onTap: _onSubmit,
+                    child: const AuthButton(
+                      text: '로그인',
+                    )),
                 Gaps.v10,
                 Padding(
                   padding: const EdgeInsets.symmetric(
