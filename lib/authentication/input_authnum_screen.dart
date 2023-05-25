@@ -35,7 +35,7 @@ class _InputAuthnumScreenState extends State<InputAuthnumScreen> {
     if (_authnum.isEmpty) return;
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (context) => Container(),
+        builder: (context) => const Scaffold(),
       ),
     );
   }

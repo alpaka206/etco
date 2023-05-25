@@ -1,3 +1,4 @@
+import 'package:etco/authentication/find_idpw_screen.dart';
 import 'package:etco/authentication/signup_screen.dart';
 import 'package:etco/authentication/two_step_auth_screen.dart';
 import 'package:etco/authentication/widgets/auth_button.dart';
@@ -65,6 +66,15 @@ class _LoginScreenState extends State<LoginScreen> {
       context,
       MaterialPageRoute(
         builder: (context) => const SignUpScreen(),
+      ),
+    );
+  }
+
+  void _onFindIdPw() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const FindIdPwScreen(),
       ),
     );
   }
@@ -183,9 +193,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text(
-                        '아이디 · 비밀번호 찾기',
-                        style: TextStyle(),
+                      GestureDetector(
+                        onTap: _onFindIdPw,
+                        child: const Text(
+                          '아이디 · 비밀번호 찾기',
+                          style: TextStyle(),
+                        ),
                       ),
                       GestureDetector(
                         onTap: _onSignUpTap,
