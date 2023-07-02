@@ -46,7 +46,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void _onSubmit() {
-    if (_id.isEmpty && _password.isEmpty) return;
+    if (_id.isEmpty || _password.isEmpty) return;
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -181,10 +181,11 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 Gaps.v32,
                 GestureDetector(
-                    onTap: _onSubmit,
-                    child: const AuthButton(
-                      text: '로그인',
-                    )),
+                  onTap: _onSubmit,
+                  child: const AuthButton(
+                    text: '로그인',
+                  ),
+                ),
                 Gaps.v10,
                 Padding(
                   padding: const EdgeInsets.symmetric(
