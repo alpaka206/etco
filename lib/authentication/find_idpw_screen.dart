@@ -1,4 +1,6 @@
 import 'package:etco/authentication/find_id_screen.dart';
+import 'package:etco/authentication/login_screen.dart';
+import 'package:etco/authentication/re_password.dart';
 import 'package:etco/authentication/widgets/auth_button.dart';
 import 'package:etco/constants/gaps.dart';
 import 'package:etco/constants/sizes.dart';
@@ -16,17 +18,50 @@ class FindIdPwScreen extends StatefulWidget {
 class _FindIdPwScreenState extends State<FindIdPwScreen> {
   bool _isPhoneChecked = false;
   bool _isEmailChecked = false;
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
+  String _email = "";
+  String _phone = "";
+
+  @override
+  void initState() {
+    super.initState();
+    _emailController.addListener(() {
+      _email = _emailController.text;
+    });
+    _phoneController.addListener(() {
+      _phone = _phoneController.text;
+    });
+    setState(() {});
+  }
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _phoneController.dispose();
+    super.dispose();
+  }
 
   void _onPhoneTap() {
     _isPhoneChecked = !_isPhoneChecked;
     if (_isPhoneChecked && _isEmailChecked) _isEmailChecked = !_isEmailChecked;
+    if (_isPhoneChecked) {
+      _emailController.clear();
+      _email = "";
+    }
     setState(() {});
+    FocusScope.of(context).unfocus();
   }
 
   void _onEmailTap() {
     _isEmailChecked = !_isEmailChecked;
     if (_isEmailChecked && _isPhoneChecked) _isPhoneChecked = !_isPhoneChecked;
+    if (_isEmailChecked) {
+      _phoneController.clear();
+      _phone = "";
+    }
     setState(() {});
+    FocusScope.of(context).unfocus();
   }
 
   void _onScaffoldTap() {
@@ -34,11 +69,33 @@ class _FindIdPwScreenState extends State<FindIdPwScreen> {
   }
 
   void _onNextTap() {
-    //입력값 있을 경우에만 찾기 눌러지게 (textfield에 controller 달아줘야함)
+    // 아이디 찾기 누르면 새로운 페이지로 가서 비밀번호 찾게 만들기
+    if ((_isEmailChecked && _email.isNotEmpty) ||
+        (_isPhoneChecked && _phone.isNotEmpty)) {
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => const FindIdScreen(),
+        ),
+      );
+    } else {
+      return;
+    }
+  }
+
+  void _onRePasswordTap() {
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (context) => const FindIdScreen(),
+        builder: (context) => const RePasswordScreen(),
       ),
+    );
+  }
+
+  void _onLoginTap() {
+    Navigator.of(context).pushAndRemoveUntil(
+      MaterialPageRoute(
+        builder: (context) => const LoginScreen(),
+      ),
+      (route) => false,
     );
   }
 
@@ -118,6 +175,7 @@ class _FindIdPwScreenState extends State<FindIdPwScreen> {
                             ),
                             Gaps.v5,
                             TextField(
+                              controller: _emailController,
                               decoration: InputDecoration(
                                 hintText: "이메일 입력",
                                 contentPadding: const EdgeInsets.only(
@@ -159,6 +217,7 @@ class _FindIdPwScreenState extends State<FindIdPwScreen> {
                             ),
                             Gaps.v5,
                             TextField(
+                              controller: _phoneController,
                               decoration: InputDecoration(
                                 hintText: "전화번호 입력(-제외)",
                                 contentPadding: const EdgeInsets.only(
@@ -242,25 +301,28 @@ class _FindIdPwScreenState extends State<FindIdPwScreen> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Expanded(
-                                  child: Container(
-                                    height: 60,
-                                    width: 200,
-                                    decoration: BoxDecoration(
-                                      color: Theme.of(context).primaryColor,
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: Colors.grey.withOpacity(0.5),
-                                          spreadRadius: 5,
-                                          blurRadius: 7,
-                                        ),
-                                      ],
-                                    ),
-                                    child: const Center(
-                                      child: Text(
-                                        "비밀번호 재설정",
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w500,
+                                  child: GestureDetector(
+                                    onTap: _onRePasswordTap,
+                                    child: Container(
+                                      height: 60,
+                                      width: 200,
+                                      decoration: BoxDecoration(
+                                        color: Theme.of(context).primaryColor,
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.grey.withOpacity(0.5),
+                                            spreadRadius: 5,
+                                            blurRadius: 7,
+                                          ),
+                                        ],
+                                      ),
+                                      child: const Center(
+                                        child: Text(
+                                          "비밀번호 재설정",
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w500,
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -268,25 +330,28 @@ class _FindIdPwScreenState extends State<FindIdPwScreen> {
                                 ),
                                 Gaps.h20,
                                 Expanded(
-                                  child: Container(
-                                    height: 60,
-                                    width: 200,
-                                    decoration: BoxDecoration(
-                                      color: Theme.of(context).primaryColor,
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: Colors.grey.withOpacity(0.5),
-                                          spreadRadius: 5,
-                                          blurRadius: 7,
-                                        ),
-                                      ],
-                                    ),
-                                    child: const Center(
-                                      child: Text(
-                                        "로그인",
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w500,
+                                  child: GestureDetector(
+                                    onTap: _onLoginTap,
+                                    child: Container(
+                                      height: 60,
+                                      width: 200,
+                                      decoration: BoxDecoration(
+                                        color: Theme.of(context).primaryColor,
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.grey.withOpacity(0.5),
+                                            spreadRadius: 5,
+                                            blurRadius: 7,
+                                          ),
+                                        ],
+                                      ),
+                                      child: const Center(
+                                        child: Text(
+                                          "로그인",
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w500,
+                                          ),
                                         ),
                                       ),
                                     ),
