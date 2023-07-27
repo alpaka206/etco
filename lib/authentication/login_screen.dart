@@ -1,4 +1,4 @@
-import 'package:etco/authentication/find_idpw_screen.dart';
+import 'package:etco/authentication/find_id_screen.dart';
 import 'package:etco/authentication/signup_screen.dart';
 import 'package:etco/authentication/two_step_auth_screen.dart';
 import 'package:etco/authentication/widgets/auth_button.dart';
@@ -74,7 +74,7 @@ class _LoginScreenState extends State<LoginScreen> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => const FindIdPwScreen(),
+        builder: (context) => const FindIdScreen(),
       ),
     );
   }
