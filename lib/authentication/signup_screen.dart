@@ -17,7 +17,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
     '법인 사업자 회원',
     '기관 회원',
   ];
-  String? _selectSeller = '일반 회원';
+  String _selectSeller = '';
+
+  @override
+  void initState() {
+    super.initState();
+    _selectSeller = _sellerList[0];
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,50 +77,80 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   fontSize: Sizes.size16,
                 ),
               ),
-              //나중에 수정
+              Gaps.v10,
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  DropdownButton(
-                    elevation: 10,
-                    borderRadius: BorderRadius.circular(20),
-                    icon: const FaIcon(
-                      FontAwesomeIcons.angleDown,
+                  Expanded(
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: Sizes.size20,
+                      ),
+                      height: Sizes.size44,
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.grey.shade700,
+                        ),
+                        borderRadius: BorderRadius.circular(7),
+                      ),
+                      child: DropdownButton(
+                        underline: Container(
+                          color: Colors.transparent,
+                        ),
+                        isExpanded: true,
+                        elevation: 10,
+                        borderRadius: BorderRadius.circular(20),
+                        icon: FaIcon(
+                          FontAwesomeIcons.angleDown,
+                          color: Colors.grey.shade600,
+                        ),
+                        iconSize: 20,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.w300,
+                          color: Colors.black,
+                        ),
+                        value: _selectSeller,
+                        items: _sellerList.map(
+                          (value) {
+                            return DropdownMenuItem(
+                              value: value,
+                              child: Text(value),
+                            );
+                          },
+                        ).toList(),
+                        onChanged: (value) {
+                          setState(() {
+                            _selectSeller = value!;
+                          });
+                        },
+                      ),
                     ),
-                    iconSize: 20,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.w300,
-                      color: Colors.black,
-                    ),
-                    value: _selectSeller,
-                    items: _sellerList.map(
-                      (value) {
-                        return DropdownMenuItem(
-                          value: value,
-                          child: Text(value),
-                        );
-                      },
-                    ).toList(),
-                    onChanged: (value) {
-                      setState(() {
-                        _selectSeller = value;
-                      });
-                    },
                   ),
+                  Gaps.h12,
                   Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: Sizes.size32,
-                      vertical: Sizes.size14,
-                    ),
+                    height: Sizes.size44,
+                    width: Sizes.size96 + Sizes.size20,
                     decoration: BoxDecoration(
                       border: Border.all(
-                        color: Colors.grey,
+                        color: Colors.grey.shade700,
                         width: 1,
                       ),
-                      borderRadius: BorderRadius.circular(5),
+                      borderRadius: BorderRadius.circular(7),
+                    ),
+                    child: const Center(
+                      child: Text(
+                        "휴대폰 인증",
+                        style: TextStyle(
+                          color: Colors.black,
+                        ),
+                      ),
                     ),
                   ),
                 ],
+              ),
+              Gaps.v32,
+              const Form(
+                child: Column(),
               ),
             ],
           ),
