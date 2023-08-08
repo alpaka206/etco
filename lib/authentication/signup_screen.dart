@@ -251,6 +251,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 ? Colors.black
                                 : const Color(0xff808080),
                             fontSize: Sizes.size14,
+                            decoration: TextDecoration.underline,
                           ),
                         ),
                       ],
