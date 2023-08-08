@@ -6,14 +6,17 @@ class RenderTextFormField extends StatelessWidget {
     super.key,
     required this.onSaved,
     required this.validator,
+    required this.isObsecure,
   });
 
   final FormFieldSetter onSaved;
   final FormFieldValidator validator;
+  final bool isObsecure;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      obscureText: isObsecure,
       cursorColor: Theme.of(context).primaryColor,
       decoration: InputDecoration(
         contentPadding: const EdgeInsets.symmetric(

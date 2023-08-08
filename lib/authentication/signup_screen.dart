@@ -162,6 +162,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     const Text("아이디"),
                     Gaps.v9,
                     RenderTextFormField(
+                      isObsecure: false,
                       onSaved: (newValue) {
                         formData['id'] = newValue;
                       },
@@ -176,6 +177,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     const Text("비밀번호"),
                     Gaps.v9,
                     RenderTextFormField(
+                      isObsecure: true,
                       onSaved: (newValue) {
                         formData['pw'] = newValue;
                       },
@@ -191,6 +193,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     const Text("비밀번호 재확인"),
                     Gaps.v9,
                     RenderTextFormField(
+                      isObsecure: true,
                       onSaved: (newValue) {
                         formData['checkPw'] = newValue;
                       },
