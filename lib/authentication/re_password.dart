@@ -1,4 +1,4 @@
-import 'package:etco/authentication/re_password2.dart';
+import 'package:etco/authentication/search.dart';
 import 'package:etco/authentication/widgets/auth_button.dart';
 import 'package:etco/constants/gaps.dart';
 import 'package:etco/constants/sizes.dart';
@@ -31,7 +31,7 @@ class _RePasswordScreenState extends State<RePasswordScreen> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => const RePasswordTwo(),
+        builder: (context) => const Search(),
       ),
     );
   }
