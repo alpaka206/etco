@@ -1,3 +1,4 @@
+import 'package:etco/authentication/signup_corp.dart';
 import 'package:etco/authentication/widgets/auth_button.dart';
 import 'package:etco/authentication/widgets/text_form_field.dart';
 import 'package:etco/constants/gaps.dart';
@@ -124,9 +125,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           },
                         ).toList(),
                         onChanged: (value) {
-                          setState(() {
-                            _selectSeller = value!;
-                          });
+                          if (value == _sellerList[2]) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const CorpSignUpScreen(),
+                              ),
+                            );
+                          }
                         },
                       ),
                     ),

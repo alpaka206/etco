@@ -15,6 +15,7 @@ class EtcoSeller extends StatelessWidget {
       title: 'ETCO Seller',
       theme: ThemeData(
         primaryColor: const Color(0xff03592C),
+        hintColor: const Color(0xff808080),
         scaffoldBackgroundColor: Colors.white,
         appBarTheme: const AppBarTheme(
           backgroundColor: Colors.white,
