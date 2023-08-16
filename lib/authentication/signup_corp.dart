@@ -1,3 +1,4 @@
+import 'package:etco/authentication/term.dart';
 import 'package:etco/authentication/widgets/auth_button.dart';
 import 'package:etco/authentication/widgets/text_form_field.dart';
 import 'package:etco/constants/gaps.dart';
@@ -49,6 +50,15 @@ class _CorpSignUpScreenState extends State<CorpSignUpScreen> {
     setState(() {});
   }
 
+  void _onTermsTap() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const Terms(),
+      ),
+    );
+  }
+
   void _onSubmitTap() {
     if (_formKey.currentState != null) {
       if (_formKey.currentState!.validate()) {
@@ -93,10 +103,13 @@ class _CorpSignUpScreenState extends State<CorpSignUpScreen> {
                         fontSize: Sizes.size14,
                       ),
                     ),
-                    Text(
-                      '법인회원(법인기관/단체) 인증안내 >',
-                      style: TextStyle(
-                        color: Theme.of(context).primaryColor,
+                    GestureDetector(
+                      onTap: _onTermsTap,
+                      child: Text(
+                        '법인회원(법인기관/단체) 인증안내 >',
+                        style: TextStyle(
+                          color: Theme.of(context).primaryColor,
+                        ),
                       ),
                     ),
                   ],
@@ -139,16 +152,7 @@ class _CorpSignUpScreenState extends State<CorpSignUpScreen> {
                           );
                         },
                       ).toList(),
-                      onChanged: (value) {
-                        if (value == _sellerList[2]) {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const CorpSignUpScreen(),
-                            ),
-                          );
-                        }
-                      },
+                      onChanged: (value) {},
                     ),
                   ),
                 ),
