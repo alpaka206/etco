@@ -254,14 +254,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               : Image.asset("assets/images/not_checked.png"),
                         ),
                         Gaps.h5,
-                        Text(
-                          "[필수] ETCO 회원약관, 쇼핑몰 호스팅 이용 약관에 동의하며,\n개인정보 수집 및 이용에 동의합니다",
-                          style: TextStyle(
-                            color: _nessChecked
-                                ? Colors.black
-                                : const Color(0xff808080),
-                            fontSize: Sizes.size14,
-                            decoration: TextDecoration.underline,
+                        Expanded(
+                          child: Text(
+                            "[필수] ETCO 회원약관, 쇼핑몰 호스팅 이용 약관에 동의하며,개인정보 수집 및 이용에 동의합니다",
+                            style: TextStyle(
+                              color: _nessChecked
+                                  ? Colors.black
+                                  : const Color(0xff808080),
+                              fontSize: Sizes.size14,
+                              decoration: TextDecoration.underline,
+                            ),
                           ),
                         ),
                       ],
