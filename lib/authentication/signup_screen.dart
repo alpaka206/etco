@@ -127,7 +127,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         onChanged: (value) {
                           _selectSeller = value!;
                           if (_selectSeller == _sellerList[2]) {
-                            Navigator.push(
+                            Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
                                 builder: (context) => const CorpSignUpScreen(),
