@@ -47,6 +47,10 @@ class _RePasswordScreenState extends State<RePasswordScreen> {
     }
   }
 
+  void _onScaffoldTap() {
+    FocusScope.of(context).unfocus();
+  }
+
   // 입력 필드 위젯 생성
   Widget _buildInputField(String hintText) {
     return TextField(
@@ -92,176 +96,179 @@ class _RePasswordScreenState extends State<RePasswordScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: Sizes.size32),
-          child: Column(
-            children: [
-              Gaps.v96,
-              // "ID / PW 찾기" 제목
-              const Text(
-                "ID / PW 찾기",
-                style: TextStyle(
-                  fontSize: Sizes.size44,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              Gaps.v72,
-              // "비밀번호 재설정" 부제목
-              const Text(
-                "비밀번호 재설정",
-                style: TextStyle(
-                  fontSize: Sizes.size20,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-              Gaps.v48,
-              // 아이디 입력 필드
-              _buildInputField("아이디"),
-              Gaps.v1,
-              // 이름 입력 필드
-              _buildInputField("이름"),
-              //컨테이너 내부
-              Gaps.v48,
-              Container(
-                width: 350,
-                height: 100,
-                padding:
-                    const EdgeInsets.symmetric(vertical: 16, horizontal: 32),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: const Color(0xfff3f3f3),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "비밀번호 찾기 방법을\n선택해주세요",
-                          style: TextStyle(
-                            fontSize: Sizes.size14,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Row(
-                          children: [
-                            GestureDetector(
-                              onTap: _toggleEmailSelection,
-                              child: Container(
-                                width: 14,
-                                height: 14,
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: Colors.transparent,
-                                  border: Border.all(
-                                    color: Theme.of(context).primaryColor,
-                                  ),
-                                ),
-                                child: Center(
-                                  child: _isEmailSelected
-                                      ? Container(
-                                          width: 10,
-                                          height: 10,
-                                          decoration: BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            color:
-                                                Theme.of(context).primaryColor,
-                                          ),
-                                        )
-                                      : null,
-                                ),
-                              ),
-                            ),
-                            const SizedBox(width: 10),
-                            const Text(
-                              "E-mail 주소",
-                              style: TextStyle(
-                                fontSize: 14,
-                              ),
-                            )
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            GestureDetector(
-                              onTap: _togglePhoneSelection,
-                              child: Container(
-                                width: 14,
-                                height: 14,
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: Colors.transparent,
-                                  border: Border.all(
-                                    color: Theme.of(context).primaryColor,
-                                  ),
-                                ),
-                                child: Center(
-                                  child: _isPhoneSelected
-                                      ? Container(
-                                          width: 10,
-                                          height: 10,
-                                          decoration: BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            color:
-                                                Theme.of(context).primaryColor,
-                                          ),
-                                        )
-                                      : null,
-                                ),
-                              ),
-                            ),
-                            const SizedBox(width: 10),
-                            const Text(
-                              "등록된 휴대폰 번호",
-                              style: TextStyle(
-                                fontSize: 14,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-              // 정보 불일치 경고 문구
-              Gaps.v32,
-              const Text(
-                "*입력하신 정보와 일치하는 계정이 없습니다",
-                style: TextStyle(
-                  color: Colors.red,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-              Gaps.v32,
-              // 다음 버튼
-              GestureDetector(
-                onTap: _navigateToNextScreen,
-                child: Container(
-                  height: Sizes.size60,
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).primaryColor,
+    return GestureDetector(
+      onTap: _onScaffoldTap,
+      child: Scaffold(
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: Sizes.size32),
+            child: Column(
+              children: [
+                Gaps.v96,
+                // "ID / PW 찾기" 제목
+                const Text(
+                  "ID / PW 찾기",
+                  style: TextStyle(
+                    fontSize: Sizes.size44,
+                    fontWeight: FontWeight.bold,
                   ),
-                  child: const Center(
-                    child: Text(
-                      "다음 >",
-                      style: TextStyle(
-                        color: Colors.white,
+                ),
+                Gaps.v72,
+                // "비밀번호 재설정" 부제목
+                const Text(
+                  "비밀번호 재설정",
+                  style: TextStyle(
+                    fontSize: Sizes.size20,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                Gaps.v48,
+                // 아이디 입력 필드
+                _buildInputField("아이디"),
+                Gaps.v1,
+                // 이름 입력 필드
+                _buildInputField("이름"),
+                //컨테이너 내부
+                Gaps.v48,
+                Container(
+                  width: 350,
+                  height: 100,
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 16, horizontal: 32),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: const Color(0xfff3f3f3),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "비밀번호 찾기 방법을\n선택해주세요",
+                            style: TextStyle(
+                              fontSize: Sizes.size14,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Row(
+                            children: [
+                              GestureDetector(
+                                onTap: _toggleEmailSelection,
+                                child: Container(
+                                  width: 14,
+                                  height: 14,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: Colors.transparent,
+                                    border: Border.all(
+                                      color: Theme.of(context).primaryColor,
+                                    ),
+                                  ),
+                                  child: Center(
+                                    child: _isEmailSelected
+                                        ? Container(
+                                            width: 10,
+                                            height: 10,
+                                            decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              color: Theme.of(context)
+                                                  .primaryColor,
+                                            ),
+                                          )
+                                        : null,
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(width: 10),
+                              const Text(
+                                "E-mail 주소",
+                                style: TextStyle(
+                                  fontSize: 14,
+                                ),
+                              )
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              GestureDetector(
+                                onTap: _togglePhoneSelection,
+                                child: Container(
+                                  width: 14,
+                                  height: 14,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: Colors.transparent,
+                                    border: Border.all(
+                                      color: Theme.of(context).primaryColor,
+                                    ),
+                                  ),
+                                  child: Center(
+                                    child: _isPhoneSelected
+                                        ? Container(
+                                            width: 10,
+                                            height: 10,
+                                            decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              color: Theme.of(context)
+                                                  .primaryColor,
+                                            ),
+                                          )
+                                        : null,
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(width: 10),
+                              const Text(
+                                "등록된 휴대폰 번호",
+                                style: TextStyle(
+                                  fontSize: 14,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                // 정보 불일치 경고 문구
+                Gaps.v32,
+                const Text(
+                  "*입력하신 정보와 일치하는 계정이 없습니다",
+                  style: TextStyle(
+                    color: Colors.red,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                Gaps.v32,
+                // 다음 버튼
+                GestureDetector(
+                  onTap: _navigateToNextScreen,
+                  child: Container(
+                    height: Sizes.size60,
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).primaryColor,
+                    ),
+                    child: const Center(
+                      child: Text(
+                        "다음 >",
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
