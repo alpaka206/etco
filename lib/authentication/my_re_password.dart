@@ -4,14 +4,14 @@ import 'package:etco/constants/gaps.dart';
 import 'package:etco/constants/sizes.dart';
 import 'package:flutter/material.dart';
 
-class TestScreen extends StatefulWidget {
-  const TestScreen({super.key});
+class MyRePasswordScreen extends StatefulWidget {
+  const MyRePasswordScreen({super.key});
 
   @override
-  State<TestScreen> createState() => _RePasswordScreenState();
+  State<MyRePasswordScreen> createState() => _RePasswordScreenState();
 }
 
-class _RePasswordScreenState extends State<TestScreen> {
+class _RePasswordScreenState extends State<MyRePasswordScreen> {
   bool _isEmailChecked = false;
   bool _isPhoneChecked = false;
 
