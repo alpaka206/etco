@@ -1,5 +1,5 @@
 import 'package:etco/authentication/login_screen.dart';
-import 'package:etco/authentication/re_password.dart';
+import 'package:etco/authentication/test.dart';
 import 'package:etco/constants/gaps.dart';
 import 'package:etco/constants/sizes.dart';
 import 'package:flutter/material.dart';

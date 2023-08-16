@@ -1,17 +1,17 @@
-import 'package:etco/authentication/search.dart';
+import 'package:etco/authentication/re_password2.dart';
 import 'package:etco/authentication/widgets/auth_button.dart';
 import 'package:etco/constants/gaps.dart';
 import 'package:etco/constants/sizes.dart';
 import 'package:flutter/material.dart';
 
-class RePasswordScreen extends StatefulWidget {
-  const RePasswordScreen({super.key});
+class TestScreen extends StatefulWidget {
+  const TestScreen({super.key});
 
   @override
-  State<RePasswordScreen> createState() => _RePasswordScreenState();
+  State<TestScreen> createState() => _RePasswordScreenState();
 }
 
-class _RePasswordScreenState extends State<RePasswordScreen> {
+class _RePasswordScreenState extends State<TestScreen> {
   bool _isEmailChecked = false;
   bool _isPhoneChecked = false;
 
@@ -31,7 +31,7 @@ class _RePasswordScreenState extends State<RePasswordScreen> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => const Search(),
+        builder: (context) => const RePasswordTwo(),
       ),
     );
   }
