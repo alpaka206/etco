@@ -1,3 +1,4 @@
+import 'package:etco/authentication/private_signup.dart';
 import 'package:etco/authentication/signup_corp.dart';
 import 'package:etco/authentication/widgets/auth_button.dart';
 import 'package:etco/authentication/widgets/text_form_field.dart';
@@ -126,6 +127,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ).toList(),
                         onChanged: (value) {
                           _selectSeller = value!;
+                          if (_selectSeller == _sellerList[1]) {
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    const PrivateSignUpScreen(),
+                              ),
+                            );
+                          }
                           if (_selectSeller == _sellerList[2]) {
                             Navigator.pushReplacement(
                               context,
