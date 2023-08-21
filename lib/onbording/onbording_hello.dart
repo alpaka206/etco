@@ -1,9 +1,18 @@
 import 'package:etco/constants/gaps.dart';
 import 'package:etco/constants/sizes.dart';
+import 'package:etco/onbording/tutorial_screen.dart';
 import 'package:flutter/material.dart';
 
 class OnbordingHello extends StatelessWidget {
   const OnbordingHello({super.key});
+
+  void _onSubmitTap(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const TutorialScreen(),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +51,7 @@ class OnbordingHello extends StatelessWidget {
               Gaps.v96,
               Gaps.v72,
               GestureDetector(
-                onTap: () {},
+                onTap: () => _onSubmitTap(context),
                 child: FractionallySizedBox(
                   widthFactor: 1,
                   child: Container(

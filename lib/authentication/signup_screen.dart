@@ -4,6 +4,7 @@ import 'package:etco/authentication/widgets/auth_button.dart';
 import 'package:etco/authentication/widgets/text_form_field.dart';
 import 'package:etco/constants/gaps.dart';
 import 'package:etco/constants/sizes.dart';
+import 'package:etco/onbording/onbording_hello.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -49,6 +50,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
     if (_formKey.currentState != null) {
       if (_formKey.currentState!.validate()) {
         _formKey.currentState!.save();
+        if (_nessChecked) {
+          Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(
+              builder: (context) => const OnbordingHello(),
+            ),
+            (route) => false,
+          );
+        }
       }
     }
   }

@@ -1,4 +1,4 @@
-import 'package:etco/onbording/onbording_hello.dart';
+import 'package:etco/authentication/login_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -22,7 +22,7 @@ class EtcoSeller extends StatelessWidget {
           elevation: 0,
         ),
       ),
-      home: const OnbordingHello(),
+      home: const LoginScreen(),
     );
   }
 }
