@@ -1,5 +1,5 @@
 import 'package:etco/authentication/private_signup.dart';
-import 'package:etco/authentication/signup_agency.dart';
+import 'package:etco/authentication/signup_corp.dart';
 import 'package:etco/authentication/signup_screen.dart';
 import 'package:etco/authentication/term.dart';
 import 'package:etco/authentication/widgets/auth_button.dart';
@@ -9,14 +9,14 @@ import 'package:etco/constants/sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class CorpSignUpScreen extends StatefulWidget {
-  const CorpSignUpScreen({super.key});
+class AgencySignUpScreen extends StatefulWidget {
+  const AgencySignUpScreen({super.key});
 
   @override
-  State<CorpSignUpScreen> createState() => _CorpSignUpScreenState();
+  State<AgencySignUpScreen> createState() => _CorpSignUpScreenState();
 }
 
-class _CorpSignUpScreenState extends State<CorpSignUpScreen> {
+class _CorpSignUpScreenState extends State<AgencySignUpScreen> {
   final _sellerList = [
     '일반 회원',
     '개인 사업자 회원',
@@ -36,7 +36,7 @@ class _CorpSignUpScreenState extends State<CorpSignUpScreen> {
   @override
   void initState() {
     super.initState();
-    _selectSeller = _sellerList[2];
+    _selectSeller = _sellerList[3];
     _emailController.addListener(() {
       _email = _emailController.text;
       setState(() {});
@@ -183,14 +183,14 @@ class _CorpSignUpScreenState extends State<CorpSignUpScreen> {
                               reverseTransitionDuration: Duration.zero,
                             ),
                           );
-                        } else if (_selectSeller == _sellerList[3]) {
+                        } else if (_selectSeller == _sellerList[2]) {
                           Navigator.pushReplacement(
                             context,
                             PageRouteBuilder(
                               pageBuilder: (BuildContext context,
                                   Animation<double> animation1,
                                   Animation<double> animation2) {
-                                return const AgencySignUpScreen(); //변경 필요
+                                return const CorpSignUpScreen(); //변경 필요
                               },
                               transitionDuration: Duration.zero,
                               reverseTransitionDuration: Duration.zero,

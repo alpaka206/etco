@@ -1,4 +1,5 @@
 import 'package:etco/authentication/private_signup.dart';
+import 'package:etco/authentication/signup_agency.dart';
 import 'package:etco/authentication/signup_corp.dart';
 import 'package:etco/authentication/widgets/auth_button.dart';
 import 'package:etco/authentication/widgets/text_form_field.dart';
@@ -111,50 +112,72 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         borderRadius: BorderRadius.circular(7),
                       ),
                       child: DropdownButton(
-                        underline: Container(
-                          color: Colors.transparent,
-                        ),
-                        isExpanded: true,
-                        elevation: 10,
-                        icon: FaIcon(
-                          FontAwesomeIcons.angleDown,
-                          color: Colors.grey.shade600,
-                        ),
-                        iconSize: 20,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.w300,
-                          color: Colors.black,
-                        ),
-                        value: _selectSeller,
-                        items: _sellerList.map(
-                          (value) {
-                            return DropdownMenuItem(
-                              value: value,
-                              child: Text(value),
-                            );
-                          },
-                        ).toList(),
-                        onChanged: (value) {
-                          _selectSeller = value!;
-                          if (_selectSeller == _sellerList[1]) {
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    const PrivateSignUpScreen(),
-                              ),
-                            );
-                          }
-                          if (_selectSeller == _sellerList[2]) {
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const CorpSignUpScreen(),
-                              ),
-                            );
-                          }
-                        },
-                      ),
+                          underline: Container(
+                            color: Colors.transparent,
+                          ),
+                          isExpanded: true,
+                          elevation: 10,
+                          icon: FaIcon(
+                            FontAwesomeIcons.angleDown,
+                            color: Colors.grey.shade600,
+                          ),
+                          iconSize: 20,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.w300,
+                            color: Colors.black,
+                          ),
+                          value: _selectSeller,
+                          items: _sellerList.map(
+                            (value) {
+                              return DropdownMenuItem(
+                                value: value,
+                                child: Text(value),
+                              );
+                            },
+                          ).toList(),
+                          onChanged: (value) {
+                            _selectSeller = value!;
+                            if (_selectSeller == _sellerList[1]) {
+                              Navigator.pushReplacement(
+                                context,
+                                PageRouteBuilder(
+                                  pageBuilder: (BuildContext context,
+                                      Animation<double> animation1,
+                                      Animation<double> animation2) {
+                                    return const PrivateSignUpScreen(); //변경 필요
+                                  },
+                                  transitionDuration: Duration.zero,
+                                  reverseTransitionDuration: Duration.zero,
+                                ),
+                              );
+                            } else if (_selectSeller == _sellerList[2]) {
+                              Navigator.pushReplacement(
+                                context,
+                                PageRouteBuilder(
+                                  pageBuilder: (BuildContext context,
+                                      Animation<double> animation1,
+                                      Animation<double> animation2) {
+                                    return const CorpSignUpScreen(); //변경 필요
+                                  },
+                                  transitionDuration: Duration.zero,
+                                  reverseTransitionDuration: Duration.zero,
+                                ),
+                              );
+                            } else if (_selectSeller == _sellerList[3]) {
+                              Navigator.pushReplacement(
+                                context,
+                                PageRouteBuilder(
+                                  pageBuilder: (BuildContext context,
+                                      Animation<double> animation1,
+                                      Animation<double> animation2) {
+                                    return const AgencySignUpScreen(); //변경 필요
+                                  },
+                                  transitionDuration: Duration.zero,
+                                  reverseTransitionDuration: Duration.zero,
+                                ),
+                              );
+                            }
+                          }),
                     ),
                   ),
                   Gaps.h12,

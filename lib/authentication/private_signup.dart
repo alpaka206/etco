@@ -1,3 +1,7 @@
+import 'package:etco/authentication/signup_agency.dart';
+import 'package:etco/authentication/signup_corp.dart';
+import 'package:etco/authentication/signup_screen.dart';
+import 'package:etco/authentication/widgets/text_form_field.dart';
 import 'package:etco/constants/gaps.dart';
 import 'package:etco/constants/sizes.dart';
 import 'package:flutter/material.dart';
@@ -65,7 +69,7 @@ class _PrivateSignupState extends State<PrivateSignUpScreen> {
     _businessNumController.addListener(() {
       _businessnum = _businessNumController.text;
     });
-    _selectSeller = _sellerList[0];
+    _selectSeller = _sellerList[1];
 
     setState(() {});
   }
@@ -150,36 +154,75 @@ class _PrivateSignupState extends State<PrivateSignUpScreen> {
                           borderRadius: BorderRadius.circular(Sizes.size5),
                         ),
                         child: DropdownButton<String>(
-                            padding: const EdgeInsets.all(
-                              Sizes.size11,
+                          padding: const EdgeInsets.all(
+                            Sizes.size11,
+                          ),
+                          underline: Container(
+                            decoration: const BoxDecoration(
+                              color: Colors.transparent,
                             ),
-                            underline: Container(
-                              decoration: const BoxDecoration(
-                                color: Colors.transparent,
-                              ),
-                            ),
-                            isExpanded: true,
-                            value: _selectSeller,
-                            icon: const Icon(Icons.keyboard_arrow_down),
-                            items: _sellerList.map(
-                              (value) {
-                                return DropdownMenuItem<String>(
-                                  value: value,
-                                  child: Text(
-                                    value,
-                                    style: const TextStyle(
-                                      fontSize: Sizes.size12,
-                                      fontWeight: FontWeight.w600,
-                                    ),
+                          ),
+                          isExpanded: true,
+                          value: _selectSeller,
+                          icon: const Icon(Icons.keyboard_arrow_down),
+                          items: _sellerList.map(
+                            (value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text(
+                                  value,
+                                  style: const TextStyle(
+                                    fontSize: Sizes.size12,
+                                    fontWeight: FontWeight.w600,
                                   ),
-                                );
-                              },
-                            ).toList(),
-                            onChanged: (value) {
-                              setState(() {
-                                _selectSeller = value!;
-                              });
-                            }),
+                                ),
+                              );
+                            },
+                          ).toList(),
+                          onChanged: (value) {
+                            _selectSeller = value!;
+                            if (_selectSeller == _sellerList[0]) {
+                              Navigator.pushReplacement(
+                                context,
+                                PageRouteBuilder(
+                                  pageBuilder: (BuildContext context,
+                                      Animation<double> animation1,
+                                      Animation<double> animation2) {
+                                    return const SignUpScreen(); //변경 필요
+                                  },
+                                  transitionDuration: Duration.zero,
+                                  reverseTransitionDuration: Duration.zero,
+                                ),
+                              );
+                            } else if (_selectSeller == _sellerList[2]) {
+                              Navigator.pushReplacement(
+                                context,
+                                PageRouteBuilder(
+                                  pageBuilder: (BuildContext context,
+                                      Animation<double> animation1,
+                                      Animation<double> animation2) {
+                                    return const CorpSignUpScreen(); //변경 필요
+                                  },
+                                  transitionDuration: Duration.zero,
+                                  reverseTransitionDuration: Duration.zero,
+                                ),
+                              );
+                            } else if (_selectSeller == _sellerList[3]) {
+                              Navigator.pushReplacement(
+                                context,
+                                PageRouteBuilder(
+                                  pageBuilder: (BuildContext context,
+                                      Animation<double> animation1,
+                                      Animation<double> animation2) {
+                                    return const AgencySignUpScreen(); //변경 필요
+                                  },
+                                  transitionDuration: Duration.zero,
+                                  reverseTransitionDuration: Duration.zero,
+                                ),
+                              );
+                            }
+                          },
+                        ),
                       ),
                     ),
                     Gaps.h14,
@@ -353,38 +396,8 @@ class _PrivateSignupState extends State<PrivateSignUpScreen> {
                       Gaps.v10,
                       SizedBox(
                         height: 40,
-                        child: TextFormField(
-                          decoration: const InputDecoration(
-                            border: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Colors.grey,
-                              ),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Colors.grey,
-                              ),
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Colors.grey,
-                              ),
-                            ),
-                            errorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Colors.grey,
-                              ),
-                            ),
-                            focusedErrorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Colors.grey,
-                              ),
-                            ),
-                            contentPadding: EdgeInsets.symmetric(
-                              horizontal: Sizes.size12,
-                              vertical: Sizes.size10,
-                            ),
-                          ),
+                        child: RenderTextFormField(
+                          isObsecure: false,
                           validator: (value) {
                             if (value == '' || value!.length < 7) {
                               return "사용할 수 없는 아이디입니다";
@@ -407,18 +420,8 @@ class _PrivateSignupState extends State<PrivateSignUpScreen> {
                       Gaps.v10,
                       SizedBox(
                         height: 40,
-                        child: TextFormField(
-                          decoration: const InputDecoration(
-                            border: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Colors.grey,
-                              ),
-                            ),
-                            contentPadding: EdgeInsets.symmetric(
-                              horizontal: Sizes.size12,
-                              vertical: Sizes.size10,
-                            ),
-                          ),
+                        child: RenderTextFormField(
+                          isObsecure: true,
                           validator: (value) {
                             _pw = value!;
                             if (value == '' || value.length < 8) {
@@ -442,18 +445,8 @@ class _PrivateSignupState extends State<PrivateSignUpScreen> {
                       Gaps.v10,
                       SizedBox(
                         height: 40,
-                        child: TextFormField(
-                          decoration: const InputDecoration(
-                            border: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Colors.grey,
-                              ),
-                            ),
-                            contentPadding: EdgeInsets.symmetric(
-                              horizontal: Sizes.size12,
-                              vertical: Sizes.size10,
-                            ),
-                          ),
+                        child: RenderTextFormField(
+                          isObsecure: true,
                           validator: (value) {
                             if (value == '' || value != _pw) {
                               return "비밀번호가 일치하지 않습니다";
