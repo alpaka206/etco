@@ -45,36 +45,41 @@ class _TutorialScreenState extends State<TutorialScreen> {
                             color: Theme.of(context).hintColor,
                           ),
                         ),
-                        child: TabBarView(
+                        child: const TabBarView(
                           children: [
-                            Image.network(
-                              'https://cdn.pixabay.com/photo/2022/06/08/05/47/stars-7249785_1280.jpg',
-                              fit: BoxFit.fill,
+                            Center(
+                              child: Text(
+                                'Page1',
+                                style: TextStyle(
+                                  fontSize: Sizes.size20,
+                                  color: Colors.amber,
+                                ),
+                              ),
                             ),
-                            const Center(
+                            Center(
                               child: Text(
                                 'Page 2',
                                 style: TextStyle(
                                   fontSize: Sizes.size20,
-                                  color: Colors.amber,
+                                  color: Colors.pink,
                                 ),
                               ),
                             ),
-                            const Center(
+                            Center(
                               child: Text(
                                 'Page 3',
                                 style: TextStyle(
                                   fontSize: Sizes.size20,
-                                  color: Colors.amber,
+                                  color: Colors.teal,
                                 ),
                               ),
                             ),
-                            const Center(
+                            Center(
                               child: Text(
                                 'Page 4',
                                 style: TextStyle(
                                   fontSize: Sizes.size20,
-                                  color: Colors.amber,
+                                  color: Colors.blue,
                                 ),
                               ),
                             ),

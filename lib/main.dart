@@ -1,4 +1,4 @@
-import 'package:etco/authentication/login_screen.dart';
+import 'package:etco/main_dashboard/dashboard_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -22,7 +22,7 @@ class EtcoSeller extends StatelessWidget {
           elevation: 0,
         ),
       ),
-      home: const LoginScreen(),
+      home: const MainDashBoard(),
     );
   }
 }
