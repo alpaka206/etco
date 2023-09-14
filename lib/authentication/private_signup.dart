@@ -132,8 +132,7 @@ class _PrivateSignupState extends State<PrivateSignUpScreen> {
                     Text(
                       "본인인증",
                       style: TextStyle(
-                        fontSize: Sizes.size12,
-                        fontWeight: FontWeight.w600,
+                        fontSize: Sizes.size14,
                       ),
                     ),
                   ],
@@ -394,20 +393,17 @@ class _PrivateSignupState extends State<PrivateSignUpScreen> {
                         ),
                       ),
                       Gaps.v10,
-                      SizedBox(
-                        height: 40,
-                        child: RenderTextFormField(
-                          isObsecure: false,
-                          validator: (value) {
-                            if (value == '' || value!.length < 7) {
-                              return "사용할 수 없는 아이디입니다";
-                            }
-                            return null;
-                          },
-                          onSaved: (newValue) {
-                            formData['id'] = newValue!;
-                          },
-                        ),
+                      RenderTextFormField(
+                        isObsecure: false,
+                        validator: (value) {
+                          if (value == '' || value!.length < 7) {
+                            return "사용할 수 없는 아이디입니다";
+                          }
+                          return null;
+                        },
+                        onSaved: (newValue) {
+                          formData['id'] = newValue!;
+                        },
                       ),
                       Gaps.v16,
                       const Text(
@@ -418,21 +414,18 @@ class _PrivateSignupState extends State<PrivateSignUpScreen> {
                         ),
                       ),
                       Gaps.v10,
-                      SizedBox(
-                        height: 40,
-                        child: RenderTextFormField(
-                          isObsecure: true,
-                          validator: (value) {
-                            _pw = value!;
-                            if (value == '' || value.length < 8) {
-                              return "비밀번호가 안전하지 않습니다";
-                            }
-                            return null;
-                          },
-                          onSaved: (newValue) {
-                            formData['pw'] = newValue!;
-                          },
-                        ),
+                      RenderTextFormField(
+                        isObsecure: true,
+                        validator: (value) {
+                          _pw = value!;
+                          if (value == '' || value.length < 8) {
+                            return "비밀번호가 안전하지 않습니다";
+                          }
+                          return null;
+                        },
+                        onSaved: (newValue) {
+                          formData['pw'] = newValue!;
+                        },
                       ),
                       Gaps.v16,
                       const Text(
@@ -443,20 +436,17 @@ class _PrivateSignupState extends State<PrivateSignUpScreen> {
                         ),
                       ),
                       Gaps.v10,
-                      SizedBox(
-                        height: 40,
-                        child: RenderTextFormField(
-                          isObsecure: true,
-                          validator: (value) {
-                            if (value == '' || value != _pw) {
-                              return "비밀번호가 일치하지 않습니다";
-                            }
-                            return null;
-                          },
-                          onSaved: (newValue) {
-                            formData['pwcheck'] = newValue!;
-                          },
-                        ),
+                      RenderTextFormField(
+                        isObsecure: true,
+                        validator: (value) {
+                          if (value == '' || value != _pw) {
+                            return "비밀번호가 일치하지 않습니다";
+                          }
+                          return null;
+                        },
+                        onSaved: (newValue) {
+                          formData['pwcheck'] = newValue!;
+                        },
                       ),
                       Gaps.v44,
                       const Row(

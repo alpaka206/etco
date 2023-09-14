@@ -1,3 +1,4 @@
+import 'package:etco/activity/activity_screen.dart';
 import 'package:etco/constants/gaps.dart';
 import 'package:etco/constants/sizes.dart';
 import 'package:flutter/material.dart';
@@ -38,11 +39,6 @@ class _MainDashBoardState extends State<MainDashBoard>
     end: Offset.zero,
   ).animate(_animationController);
 
-  late final Animation<Offset> _managePanelAnimation = Tween(
-    begin: const Offset(0, -0.2),
-    end: Offset.zero,
-  ).animate(_firstAnimationController);
-
   late final Animation<Color?> _barrierAnimation = ColorTween(
     begin: Colors.black26.withOpacity(0.1),
     end: Colors.black26.withOpacity(0.3),
@@ -70,12 +66,22 @@ class _MainDashBoardState extends State<MainDashBoard>
     });
   }
 
+  void _onActivityScreenTap() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const ActivityScreen(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xffefefef),
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
+        foregroundColor: Colors.white,
         elevation: 0,
         title: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -101,43 +107,46 @@ class _MainDashBoardState extends State<MainDashBoard>
               ),
             ),
             Gaps.h24,
-            Stack(
-              children: [
-                Container(
-                  height: 30,
-                  width: 30,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Theme.of(context).primaryColor,
-                  ),
-                  child: const Center(
-                    child: FaIcon(
-                      FontAwesomeIcons.solidBell,
-                      size: Sizes.size12,
-                    ),
-                  ),
-                ),
-                Positioned(
-                  right: 1,
-                  child: Container(
-                    width: 10,
-                    height: 10,
-                    decoration: const BoxDecoration(
+            GestureDetector(
+              onTap: _onActivityScreenTap,
+              child: Stack(
+                children: [
+                  Container(
+                    height: 30,
+                    width: 30,
+                    decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: Colors.red,
+                      color: Theme.of(context).primaryColor,
                     ),
                     child: const Center(
-                      child: Text(
-                        "1",
-                        style: TextStyle(
-                          fontSize: Sizes.size8,
-                          color: Colors.white,
+                      child: FaIcon(
+                        FontAwesomeIcons.solidBell,
+                        size: Sizes.size12,
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    right: 1,
+                    child: Container(
+                      width: 10,
+                      height: 10,
+                      decoration: const BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.red,
+                      ),
+                      child: const Center(
+                        child: Text(
+                          "1",
+                          style: TextStyle(
+                            fontSize: Sizes.size8,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
             Gaps.h20,
             Image.asset(
@@ -284,59 +293,51 @@ class _MainDashBoardState extends State<MainDashBoard>
                       ],
                     ),
                     Gaps.v6,
-                    Stack(
-                      children: [
-                        SlideTransition(
-                          position: _managePanelAnimation,
-                          child: Container(
-                            decoration: const BoxDecoration(
-                              color: Colors.transparent,
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Text(
-                                  "상품 등록",
-                                  style: TextStyle(
-                                    fontSize: Sizes.size16,
-                                    color: _firstArrow
-                                        ? const Color(0xff707070)
-                                        : Colors.transparent,
-                                  ),
-                                ),
-                                Text(
-                                  "상품 조회 / 수정",
-                                  style: TextStyle(
-                                    fontSize: Sizes.size16,
-                                    color: _firstArrow
-                                        ? const Color(0xff707070)
-                                        : Colors.transparent,
-                                  ),
-                                ),
-                                Text(
-                                  "상품 알림",
-                                  style: TextStyle(
-                                    fontSize: Sizes.size16,
-                                    color: _firstArrow
-                                        ? const Color(0xff707070)
-                                        : Colors.transparent,
-                                  ),
-                                ),
-                                Text(
-                                  "부적합 상품 관리",
-                                  style: TextStyle(
-                                    fontSize: Sizes.size16,
-                                    color: _firstArrow
-                                        ? const Color(0xff707070)
-                                        : Colors.transparent,
-                                  ),
-                                ),
-                              ],
+                    Container(
+                      decoration: const BoxDecoration(
+                        color: Colors.transparent,
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "상품 등록",
+                            style: TextStyle(
+                              fontSize: Sizes.size16,
+                              color: _firstArrow
+                                  ? const Color(0xff707070)
+                                  : Colors.transparent,
                             ),
                           ),
-                        )
-                      ],
+                          Text(
+                            "상품 조회 / 수정",
+                            style: TextStyle(
+                              fontSize: Sizes.size16,
+                              color: _firstArrow
+                                  ? const Color(0xff707070)
+                                  : Colors.transparent,
+                            ),
+                          ),
+                          Text(
+                            "상품 알림",
+                            style: TextStyle(
+                              fontSize: Sizes.size16,
+                              color: _firstArrow
+                                  ? const Color(0xff707070)
+                                  : Colors.transparent,
+                            ),
+                          ),
+                          Text(
+                            "부적합 상품 관리",
+                            style: TextStyle(
+                              fontSize: Sizes.size16,
+                              color: _firstArrow
+                                  ? const Color(0xff707070)
+                                  : Colors.transparent,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                     Gaps.v20,
                   ],
@@ -345,6 +346,88 @@ class _MainDashBoardState extends State<MainDashBoard>
             ),
           ),
         ],
+      ),
+      bottomNavigationBar: BottomAppBar(
+        elevation: 0,
+        color: const Color(0xffefefef),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Text(
+              '데스크탑 페이지로 이동',
+              style: TextStyle(
+                color: Color(0xffACACAC),
+              ),
+            ),
+            Gaps.v20,
+            FractionallySizedBox(
+              widthFactor: 1,
+              child: Container(
+                height: Sizes.size40,
+                decoration: const BoxDecoration(
+                  color: Color(0xffE6E6E6),
+                ),
+                child: const Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: Sizes.size20,
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        '기타 서비스',
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: Sizes.size12,
+                        ),
+                      ),
+                      Gaps.h5,
+                      Text(
+                        '모바일 앱 다운로드',
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: Sizes.size12,
+                        ),
+                      ),
+                      Gaps.h5,
+                      Text(
+                        '광고 요청',
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: Sizes.size12,
+                        ),
+                      ),
+                      Gaps.h5,
+                      Text(
+                        '제휴 마케팅',
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: Sizes.size12,
+                        ),
+                      ),
+                      Gaps.h5,
+                      Text(
+                        'FAQ',
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: Sizes.size12,
+                        ),
+                      ),
+                      Gaps.h5,
+                      Text(
+                        '약관 및 법률',
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: Sizes.size12,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
